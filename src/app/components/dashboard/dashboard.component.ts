@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   addCardDialog(): void {
     const dialogRef = this.dialog.open(AddCardComponent, {
-      width: 'auto',
+      width: '500px',
       height: 'auto'
     });
     dialogRef.afterClosed().subscribe(() => {
