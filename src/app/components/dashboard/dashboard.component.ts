@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCardComponent } from '../add-card/add-card.component';
+import { CardModel } from '../add-card/add-card.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,8 +10,9 @@ import { AddCardComponent } from '../add-card/add-card.component';
 })
 export class DashboardComponent implements OnInit {
 
-  cardsLength = localStorage.length;
-  cardInfo = new Array();
+  cardsLength = 0;
+  cardInfo: string = '';
+  cardInformation: CardModel[] = [];
 
   constructor(private dialog: MatDialog) { }
 
@@ -20,17 +22,29 @@ export class DashboardComponent implements OnInit {
 
   addCardDialog(): void {
     const dialogRef = this.dialog.open(AddCardComponent, {
-      width: '500px',
-      data: {
-        
-      }
-    })
+      width: 'auto',
+      height: 'auto'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.receiveCardData();
+    });
   }
 
   receiveCardData() {
-    for (let i = 0; i<this.cardsLength; i++) {
-      this.cardInfo.push(localStorage.getItem('card'+i));
+    this.cardInfo = localStorage.getItem('card') as string;
+    if(this.cardInfo) {
+      this.cardInformation = JSON.parse(this.cardInfo);
+      this.cardsLength = this.cardInformation.length;
+      console.log("Dashboard.ReceiveData ", this.cardInformation);
     }
+  }
+
+  removeCard(cardNumber: string) {
+    this.cardInformation = this.cardInformation.filter((card) => {
+      return Number(card.cardNumber) !== Number(cardNumber);
+    });
+    localStorage.setItem('card', JSON.stringify(this.cardInformation));
+    console.log("Dashboard.removeCard ", this.cardInformation);
   }
 
 }

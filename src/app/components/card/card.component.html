@@ -1,0 +1,10 @@
+<div class="card-details">
+    <mat-card class="show-card">
+        <mat-card-content>
+            <p>Debit Card Number</p>
+            <p>{{maskedCard}}</p>
+        </mat-card-content>
+    </mat-card>
+
+    <button mat-stroked-button color="primary" class="remove-btn" (click)="removeCard(card!.cardNumber!)">Remove</button>
+</div>

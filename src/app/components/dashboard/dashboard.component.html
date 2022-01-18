@@ -1,8 +1,10 @@
 <h2>My Wallet</h2>
 
-<mat-card>
+<mat-card class="parent-card">
     <mat-card-content *ngIf="cardsLength>0">
-        abc
+        <ng-container *ngFor="let card of cardInformation">
+            <app-card [card]="card" (cardNumberToRemove)="removeCard($event)"></app-card>
+        </ng-container>
     </mat-card-content>
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="addCardDialog()">Add New Card</button>

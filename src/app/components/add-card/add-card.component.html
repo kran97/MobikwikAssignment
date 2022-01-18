@@ -1,1 +1,38 @@
-<p>add-card works!</p>
+<div>
+    <h3>Add New Card</h3>
+    <form [formGroup]="cardInformation">
+        <div>
+            <label>Enter Debit/Credit Card Number</label>
+            <mat-form-field>
+                <input matInput formControlName="cardNumber" placeholder="Enter Debit/Credit Card Number">
+            </mat-form-field>
+        </div>
+        <div>
+            <div>
+                <label>Expiry Month</label>
+                <mat-form-field>
+                    <mat-label>MM</mat-label>
+                    <mat-select formControlName="expiryMonth">
+                        <mat-option *ngFor="let month of months" value="{{month}}">{{month}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <label>Expiry Year</label>
+                <mat-form-field>
+                    <mat-label>YY</mat-label>
+                    <mat-select formControlName="expiryYear">
+                        <mat-option *ngFor="let year of years" value="{{year}}">{{year}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <label>CVV</label>
+                <mat-form-field>
+                    <input matInput type="password" formControlName="cvv" placeholder="CVV">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <button mat-raised-button color="primary" (click)="submitCard(cardInformation.value)">Add Card</button>
+</div>
