@@ -1,10 +1,11 @@
-<div>
+<div class="form-div">
     <h3>Add New Card</h3>
     <form [formGroup]="cardInformation">
         <div class="form-input-row-1">
             <label>Enter Debit/Credit Card Number</label>
             <mat-form-field appearance="outline">
                 <input matInput formControlName="cardNumber" placeholder="Enter Debit/Credit Card Number">
+                <mat-error *ngIf="(cardInformationControls['cardNumber'].invalid || cardInformationControls['cardNumber'].dirty ) && cardInformationControls['cardNumber'].touched">{{cardNumberErrorMessage()}}</mat-error>
             </mat-form-field>
         </div>
         <div class="drop-down-group">
@@ -15,6 +16,7 @@
                     <mat-select formControlName="expiryMonth">
                         <mat-option *ngFor="let month of months" value="{{month}}">{{month}}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="(cardInformationControls['expiryMonth'].invalid || cardInformationControls['expiryMonth'].dirty ) && cardInformationControls['expiryMonth'].touched">{{expiryMonthErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-row-2">
@@ -24,15 +26,17 @@
                     <mat-select formControlName="expiryYear">
                         <mat-option *ngFor="let year of years" value="{{year}}">{{year}}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="(cardInformationControls['expiryYear'].invalid || cardInformationControls['expiryYear'].dirty ) && cardInformationControls['expiryYear'].touched">{{expiryYearErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-input-row-2">
                 <label>CVV</label>
                 <mat-form-field appearance="outline">
                     <input matInput type="password" formControlName="cvv" placeholder="CVV">
+                    <mat-error *ngIf="(cardInformationControls['cvv'].invalid || cardInformationControls['cvv'].dirty ) && cardInformationControls['cvv'].touched">{{cvvErrorMessage()}}</mat-error>
                 </mat-form-field>
             </div>
         </div>
     </form>
-    <button mat-raised-button color="primary" [disabled]="!cardInformation.valid" (click)="submitCard(cardInformation.value)">Add Card</button>
+    <button class="add-card-btn" mat-raised-button color="primary" [disabled]="!cardInformation.valid" (click)="submitCard(cardInformation.value)">Add Card</button>
 </div>

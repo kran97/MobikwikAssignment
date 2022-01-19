@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCardComponent } from '../add-card/add-card.component';
 import { CardModel } from '../add-card/add-card.component';
@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit {
     if(this.cardInfo) {
       this.cardInformation = JSON.parse(this.cardInfo);
       this.cardsLength = this.cardInformation.length;
-      console.log("Dashboard.ReceiveData ", this.cardInformation);
     }
   }
 
@@ -44,7 +43,6 @@ export class DashboardComponent implements OnInit {
       return Number(card.cardNumber) !== Number(cardNumber);
     });
     localStorage.setItem('card', JSON.stringify(this.cardInformation));
-    console.log("Dashboard.removeCard ", this.cardInformation);
   }
 
 }
