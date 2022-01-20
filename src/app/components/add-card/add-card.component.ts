@@ -6,10 +6,10 @@ const MONTHS = ['01','02','03','04','05','06','07','08','09','10','11','12'];
 const YEARS = ['22','23','24','25','26','27','28','29','30'];
 
 export class CardModel {
-  cardNumber?: string;
-  expiryMonth?: string;
-  expiryYear?: string;
-  cvv?: string;
+  cardNumber!: string;
+  expiryMonth!: string;
+  expiryYear!: string;
+  cvv!: string;
 }
 
 @Component({

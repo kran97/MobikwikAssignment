@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
     this.cardInfo = localStorage.getItem('card') as string;
     if(this.cardInfo) {
       this.cardInformation = JSON.parse(this.cardInfo);
+      this.cardInformation = this.cardInformation.sort((a,b) => Number(a.cardNumber.slice(0,15)) - Number(b.cardNumber.slice(0,15)));
       this.cardsLength = this.cardInformation.length;
     }
   }

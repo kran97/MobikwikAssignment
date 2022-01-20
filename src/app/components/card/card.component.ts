@@ -8,7 +8,7 @@ import { CardModel } from '../add-card/add-card.component';
 })
 export class CardComponent implements OnInit {
 
-  @Input() card: CardModel = {};
+  @Input() card: CardModel = {cardNumber: '', expiryMonth: '', expiryYear: '', cvv: ''};
   @Output() cardNumberToRemove = new EventEmitter<string>();
   maskedCard: string = '';
 
