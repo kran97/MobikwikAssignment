@@ -29,7 +29,7 @@ export class AddCardComponent implements OnInit {
     cardNumber: ['', [Validators.required, Validators.minLength(15), this.validateCardNumber]],
     expiryMonth: ['', [Validators.required]],
     expiryYear: ['', [Validators.required]],
-    cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(5), this.validateCvv.bind(this)]]
+    cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4), this.validateCvv.bind(this)]]
   });
 
   cardArray: CardModel[] = [];
@@ -53,7 +53,7 @@ export class AddCardComponent implements OnInit {
 
   validateCvv(control: FormControl) {
     if (this.cardInformation && this.cardInformation.controls && this.cardInformation.controls['cardNumber']) {
-      if (this.cardInformation.controls['cardNumber'].value.startsWith('37') && (control.value.length<5 || control.value.length>5)) {
+      if (this.cardInformation.controls['cardNumber'].value.startsWith('37') && (control.value.length<4 || control.value.length>4)) {
         return {'invalidLength': true};
       } else if (!this.cardInformation.controls['cardNumber'].value.startsWith('37') && (control.value.length<3 || control.value.length>3)) {
         return {'invalidLength': true};
@@ -88,7 +88,7 @@ export class AddCardComponent implements OnInit {
       this.cardInformation.controls['cvv'] &&
       this.cardInformation.controls['cvv'].hasError('required')) ? 'CVV is required' :
       this.cardInformation.controls['cvv'].hasError('minlength') && !this.cardInformation.controls['cardNumber'].value.startsWith('37') ? 'CVV should be 3 digits long' :
-      this.cardInformation.controls['cvv'].hasError('minlength') && this.cardInformation.controls['cardNumber'].value.startsWith('37') ? 'CVV should be 5 digits long' :
+      this.cardInformation.controls['cvv'].hasError('minlength') && this.cardInformation.controls['cardNumber'].value.startsWith('37') ? 'CVV should be 4 digits long' :
       this.cardInformation.controls['cvv'].hasError('invalidLength') ? 'Please enter valid CVV' : '';
   }
 
