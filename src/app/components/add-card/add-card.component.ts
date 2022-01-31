@@ -92,17 +92,22 @@ export class AddCardComponent implements OnInit {
       this.cardInformation.controls['cvv'].hasError('invalidLength') ? 'Please enter valid CVV' : '';
   }
 
-  submitCard(cardData: CardModel) {
+  submitCard(cardData: CardModel): void {
     this.cardArray.forEach((card) => {
       if (card.cardNumber === cardData.cardNumber) {
+        debugger;
         this.existingCard = true;
         return;
       }
     });
     if (!this.existingCard) {
+      debugger;
       this.cardArray.push(cardData);
       localStorage.setItem('card', JSON.stringify(this.cardArray));
       this.dialogRef.close(); 
+    }
+    if (this.existingCard) {
+      this.existingCard = false;
     }
   }
 }
